@@ -17,6 +17,7 @@ class ShoppingCart extends Component {
           <img
             role="presentation"
             src={item.link}
+            className={'SC-image'}
           />
         </li>
       )

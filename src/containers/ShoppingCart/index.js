@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './ShoppingCart.css';
+import { removeFromCart } from '../../actions';
 
 class ShoppingCart extends Component {
   renderShoppingCart = () => {
-    const { shoppingCart } = this.props;
+    const { shoppingCart, removeFromCartAction } = this.props;
     return shoppingCart.map((item) => {
       return (
         <li
           key={item.id}
           className={'SC-list-item'}
-          onClick={() => console.log('remove from cart')}
+          onClick={() => removeFromCartAction(item.id)}
         >
           <img
             role="presentation"
@@ -39,4 +40,9 @@ const mapStateToProps = ({ shoppingCart }) => ({
   shoppingCart
 });
 
-export default connect(mapStateToProps)(ShoppingCart);
+// removeFromCartAction is a func that's invoked w/'id', which in turn invokes the dispatch func that is passed 'id'
+const mapDispatchToProps = (dispatch) => ({
+  removeFromCartAction: (id) => dispatch(removeFromCart(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

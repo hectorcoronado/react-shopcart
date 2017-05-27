@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 import './ShoppingCart.css';
 import { removeFromCart } from '../../actions';
@@ -10,7 +11,7 @@ class ShoppingCart extends Component {
     return shoppingCart.map((item) => {
       return (
         <li
-          key={item.id}
+          key={uuid()}
           className={'SC-list-item'}
           onClick={() => removeFromCartAction(item.id)}
         >
